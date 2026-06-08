@@ -56,6 +56,26 @@
             font-weight: bold;
             font-size: 17px;
         }
+        .music-btn {
+            background: #eb3471;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(235, 52, 113, 0.4);
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .music-btn:hover {
+            transform: scale(1.05);
+            background: #d42760;
+        }
     </style>
 </head>
 <body>
@@ -80,7 +100,30 @@
         <p style="font-size: 15px; color: #a195a6; margin-top: 25px; font-weight: bold;">
             تاڤە بۆ بەرزان ❤️
         </p>
+
+        <button class="music-btn" id="playBtn">🎵 لێدانی گۆرانی تایبەت</button>
     </div>
+
+    <audio id="bgMusic" loop>
+        <source src="FullSizeRender.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+        const btn = document.getElementById('playBtn');
+
+        btn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play().catch(error => {
+                    alert("تکایە سەرەتا جارێک کلیک لەسەر شاشەکە بکە پاشان دوگمەکە دابگرە.");
+                });
+                btn.innerHTML = "⏸ ڕاگرتنی گۆرانی";
+            } else {
+                music.pause();
+                btn.innerHTML = "🎵 لێدانی گۆرانی تایبەت";
+            }
+        });
+    </script>
 
 </body>
 </html>
